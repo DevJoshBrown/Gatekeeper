@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/DevJoshBrown/RLProxy/internal/algorithm"
+	"github.com/DevJoshBrown/Gatekeeper/internal/algorithm"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 )
