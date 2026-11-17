@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/DevJoshBrown/RLProxy/internal/algorithm"
+	"github.com/DevJoshBrown/Gatekeeper/internal/algorithm"
 )
 
 func NewReverseProxy(target *url.URL) *httputil.ReverseProxy {
