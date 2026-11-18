@@ -7,6 +7,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/joho/godotenv"
+
 	"github.com/DevJoshBrown/Gatekeeper/internal/algorithm"
 	"github.com/DevJoshBrown/Gatekeeper/internal/proxy"
 	"github.com/prometheus/client_golang/prometheus"
@@ -14,6 +16,11 @@ import (
 )
 
 func main() {
+
+	err := godotenv.Load()
+	if err != nil {
+		slog.Info(".env file missing", "info", err)
+	}
 
 	upstreamScheme := os.Getenv("UPSTREAMSCHEME")
 	if upstreamScheme == "" {
@@ -60,7 +67,7 @@ func main() {
 		Handler:      mux,
 	}
 
-	err := proxyServer.ListenAndServe()
+	err = proxyServer.ListenAndServe()
 	if err != nil {
 		slog.Error("server failed", "error", err)
 		os.Exit(1)
