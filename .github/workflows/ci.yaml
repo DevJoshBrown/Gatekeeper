@@ -25,4 +25,4 @@ jobs:
         run: go vet ./...
 
       - name: Run test suite
-        run: go test ./... -race
+        run: go test ./... -race -cover
