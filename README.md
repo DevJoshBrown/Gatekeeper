@@ -1,3 +1,4 @@
+![test status badge](https://github.com/DevJoshBrown/Gatekeeper/actions/workflows/ci.yaml/badge.svg)
 # Gatekeeper
 
 *Got 429 problems? ...Server overload ain't one!*
