@@ -10,6 +10,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/DevJoshBrown/Gatekeeper/internal/algorithm"
+	"github.com/DevJoshBrown/Gatekeeper/internal/config"
 	"github.com/DevJoshBrown/Gatekeeper/internal/proxy"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -39,7 +40,12 @@ func main() {
 		Host:   upstreamHost,
 	}
 
-	TB := algorithm.NewTokenBucket(75, 25, 75)
+	// Token bucket config
+	capacity := config.GetFloatEnv("TOKENBUCKET_CAPACITY", 75)
+	refillRate := config.GetFloatEnv("TOKENBUCKET_REFILLRATE", 25)
+	currentTokens := capacity
+
+	TB := algorithm.NewTokenBucket(capacity, refillRate, currentTokens)
 	Proxy := proxy.NewReverseProxy(&upstreamURL)
 
 	reg := prometheus.NewRegistry()

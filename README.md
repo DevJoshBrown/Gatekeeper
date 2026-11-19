@@ -44,11 +44,14 @@ Keep firing requests past the configured burst capacity and you'll start seeing 
 
 Gatekeeper is configured entirely through environment variables (loaded automatically from a `.env` file in local development, or supplied directly by the platform in Docker/Kubernetes):
 
-| Variable         | Required | Description                                  | Default |
-|------------------|----------|-----------------------------------------------|---------|
-| `UPSTREAMSCHEME`  | Yes      | Scheme of the upstream service (`http`/`https`) | —     |
-| `UPSTREAMHOST`    | Yes      | Host (and port) of the upstream service       | —       |
-| `PROXYPORT`       | No       | Port Gatekeeper itself listens on             | `8081`  |
+| Variable                 | Required | Description                                        | Default |
+|--------------------------|----------|----------------------------------------------------|---------|
+| `UPSTREAMSCHEME`         | Yes      | Scheme of the upstream service (`http`/`https`)    | —       |
+| `UPSTREAMHOST`           | Yes      | Host (and port) of the upstream service            | —       |
+| `PROXYPORT`              | No       | Port Gatekeeper itself listens on                  | `8081`  |
+| `TOKENBUCKET_CAPACITY`   | No       | The total token capacity of the bucket             | `75.0`  |
+| `TOKENBUCKET_REFILLRATE` | No       | The refill rate in tokens per second               | `25.0`  |
+
 
 Missing a required variable causes Gatekeeper to fail fast at startup with a clear error, rather than starting in a broken state.
 
