@@ -88,3 +88,16 @@ Scraping metrics:
 curl http://localhost:8081/metrics
 ```
 
+## Deployment
+
+Gatekeeper is containerized via a multi-stage Dockerfile (a Go-toolchain `builder` stage, producing a binary copied into a minimal final image). GitHub Actions runs on every pull request against `main`: compile, `go vet`, the full test suite with the race detector, a `gosec` static security scan, and a Docker build, any one of these failing blocks the merge.
+
+The container image is pushed to a private AWS ECR repository, which is provisioned and managed as code with [OpenTofu](https://opentofu.org/).
+
+## Roadmap
+
+Still to build:
+
+- **Compute deployment** — provisioning ECS/Fargate (or similar) via OpenTofu so the pushed image actually runs and is reachable, rather than sitting in the registry.
+
+
