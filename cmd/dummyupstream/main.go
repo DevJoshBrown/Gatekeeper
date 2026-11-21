@@ -36,6 +36,7 @@ func countHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
 	http.HandleFunc("/count", countHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil)) // #nosec G114 - toy dummy upstream server for demo purpose only - timeout safety not required
 }
