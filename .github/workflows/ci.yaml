@@ -32,3 +32,6 @@ jobs:
 
       - name: Run gosec
         run: gosec ./...
+
+      - name: Run Docker
+        run: docker build -t gatekeeper .
