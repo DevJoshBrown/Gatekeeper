@@ -87,5 +87,8 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("ok"))
+	_, err := w.Write([]byte("ok"))
+	if err != nil {
+		slog.Error("failed to write health check response", "error", err)
+	}
 }
